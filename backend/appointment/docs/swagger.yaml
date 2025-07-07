@@ -1,0 +1,66 @@
+definitions:
+  handler.AppointmentRequest:
+    properties:
+      doctor_id:
+        type: integer
+      slot_id:
+        type: integer
+    type: object
+  model.Appointment:
+    properties:
+      created_at:
+        type: string
+      doctor_id:
+        type: integer
+      id:
+        type: integer
+      patient_id:
+        type: integer
+      slot_id:
+        type: integer
+      status:
+        description: Upcoming, Completed, Cancelled
+        type: string
+      updated_at:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /appointments:
+    post:
+      consumes:
+      - application/json
+      description: Patient books an appointment for a slot with a doctor
+      parameters:
+      - description: Appointment info
+        in: body
+        name: appointment
+        required: true
+        schema:
+          $ref: '#/definitions/handler.AppointmentRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.Appointment'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "403":
+          description: Forbidden
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Book a new appointment
+      tags:
+      - appointments
+swagger: "2.0"
