@@ -1,0 +1,82 @@
+definitions:
+  handler.UserRequest:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+    type: object
+  model.User:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      role:
+        description: '"patient" or "doctor"'
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /me:
+    get:
+      consumes:
+      - application/json
+      description: Get current user's profile
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Get current user's profile
+      tags:
+      - users
+  /profile:
+    put:
+      consumes:
+      - application/json
+      description: Update the profile of the current user
+      parameters:
+      - description: User info
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/handler.UserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update user profile
+      tags:
+      - users
+swagger: "2.0"
