@@ -1,0 +1,50 @@
+# macOS
+.DS_Store
+
+# Node.js
+node_modules/
+frontend/node_modules/
+
+# Dependency directories
+**/vendor/
+
+# Go build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+**/bin/
+**/dist/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+
+# Coverage
+coverage/
+*.coverprofile
+
+# Docker
+**/Dockerfile*
+**/docker-compose*
+
+# Misc
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Postman
+postman/*
+!postman/*.json 
