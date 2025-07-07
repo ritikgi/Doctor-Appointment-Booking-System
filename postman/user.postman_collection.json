@@ -1,0 +1,45 @@
+{
+    "info": {
+      "name": "User Service",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Get My Profile",
+        "request": {
+          "method": "GET",
+          "header": [{ "key": "Authorization", "value": "Bearer {{jwt}}" }],
+          "url": { "raw": "http://localhost:8081/me", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["me"] }
+        }
+      },
+      {
+        "name": "Update My Profile",
+        "request": {
+          "method": "PUT",
+          "header": [
+            { "key": "Authorization", "value": "Bearer {{jwt}}" },
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"New Name\"\n}"
+          },
+          "url": { "raw": "http://localhost:8081/me", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["me"] }
+        }
+      },
+      {
+        "name": "List Doctors",
+        "request": {
+          "method": "GET",
+          "url": { "raw": "http://localhost:8081/doctors", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["doctors"] }
+        }
+      },
+      {
+        "name": "Health",
+        "request": {
+          "method": "GET",
+          "url": { "raw": "http://localhost:8081/health", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["health"] }
+        }
+      }
+    ]
+  }

@@ -1,0 +1,67 @@
+{
+    "info": {
+      "name": "Schedule Service",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Create Slot (Doctor Only)",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Authorization", "value": "Bearer {{doctor_jwt}}" },
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"start_time\": \"2025-07-07T10:00:00Z\",\n  \"end_time\": \"2025-07-07T10:30:00Z\"\n}"
+          },
+          "url": { "raw": "http://localhost:8082/slots", "protocol": "http", "host": ["localhost"], "port": "8082", "path": ["slots"] }
+        }
+      },
+      {
+        "name": "Get Available Slots for Doctor",
+        "request": {
+          "method": "GET",
+          "url": { "raw": "http://localhost:8082/slots?doctor_id={{doctor_id}}", "protocol": "http", "host": ["localhost"], "port": "8082", "path": ["slots"], "query": [{ "key": "doctor_id", "value": "{{doctor_id}}" }] }
+        }
+      },
+      {
+        "name": "Update Slot (Doctor Only)",
+        "request": {
+          "method": "PUT",
+          "header": [
+            { "key": "Authorization", "value": "Bearer {{doctor_jwt}}" },
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"start_time\": \"2025-07-07T11:00:00Z\"\n}"
+          },
+          "url": { "raw": "http://localhost:8082/slots/{{slot_id}}", "protocol": "http", "host": ["localhost"], "port": "8082", "path": ["slots", "{{slot_id}}"] }
+        }
+      },
+      {
+        "name": "Delete Slot (Doctor Only)",
+        "request": {
+          "method": "DELETE",
+          "header": [{ "key": "Authorization", "value": "Bearer {{doctor_jwt}}" }],
+          "url": { "raw": "http://localhost:8082/slots/{{slot_id}}", "protocol": "http", "host": ["localhost"], "port": "8082", "path": ["slots", "{{slot_id}}"] }
+        }
+      },
+      {
+        "name": "Book Slot (Internal/Cross-Service)",
+        "request": {
+          "method": "PUT",
+          "url": { "raw": "http://localhost:8082/slots/{{slot_id}}/book", "protocol": "http", "host": ["localhost"], "port": "8082", "path": ["slots", "{{slot_id}}", "book"] }
+        }
+      },
+      {
+        "name": "Health",
+        "request": {
+          "method": "GET",
+          "url": { "raw": "http://localhost:8082/health", "protocol": "http", "host": ["localhost"], "port": "8082", "path": ["health"] }
+        }
+      }
+    ]
+  }

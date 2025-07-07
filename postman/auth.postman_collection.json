@@ -1,0 +1,40 @@
+{
+    "info": {
+      "name": "Auth Service",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Register",
+        "request": {
+          "method": "POST",
+          "header": [{ "key": "Content-Type", "value": "application/json" }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"patient\"\n}"
+          },
+          "url": { "raw": "http://localhost:8080/register", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["register"] }
+        }
+      },
+      {
+        "name": "Login",
+        "request": {
+          "method": "POST",
+          "header": [{ "key": "Content-Type", "value": "application/json" }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+          },
+          "url": { "raw": "http://localhost:8080/login", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["login"] }
+        }
+      },
+      {
+        "name": "Health",
+        "request": {
+          "method": "GET",
+          "url": { "raw": "http://localhost:8080/health", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["health"] }
+        }
+      }
+    ]
+  }
+  
