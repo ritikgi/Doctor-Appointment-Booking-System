@@ -1,0 +1,61 @@
+{
+    "info": {
+      "name": "Appointment Service",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Book Appointment (Patient Only)",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Authorization", "value": "Bearer {{patient_jwt}}" },
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"doctor_id\": {{doctor_id}},\n  \"slot_id\": {{slot_id}}\n}"
+          },
+          "url": { "raw": "http://localhost:8083/appointments", "protocol": "http", "host": ["localhost"], "port": "8083", "path": ["appointments"] }
+        }
+      },
+      {
+        "name": "Get My Appointments (Patient Only)",
+        "request": {
+          "method": "GET",
+          "header": [{ "key": "Authorization", "value": "Bearer {{patient_jwt}}" }],
+          "url": { "raw": "http://localhost:8083/appointments", "protocol": "http", "host": ["localhost"], "port": "8083", "path": ["appointments"] }
+        }
+      },
+      {
+        "name": "Update Appointment (Patient Only)",
+        "request": {
+          "method": "PUT",
+          "header": [
+            { "key": "Authorization", "value": "Bearer {{patient_jwt}}" },
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"status\": \"Cancelled\"\n}"
+          },
+          "url": { "raw": "http://localhost:8083/appointments/{{appointment_id}}", "protocol": "http", "host": ["localhost"], "port": "8083", "path": ["appointments", "{{appointment_id}}"] }
+        }
+      },
+      {
+        "name": "Cancel Appointment (Patient Only)",
+        "request": {
+          "method": "DELETE",
+          "header": [{ "key": "Authorization", "value": "Bearer {{patient_jwt}}" }],
+          "url": { "raw": "http://localhost:8083/appointments/{{appointment_id}}", "protocol": "http", "host": ["localhost"], "port": "8083", "path": ["appointments", "{{appointment_id}}"] }
+        }
+      },
+      {
+        "name": "Health",
+        "request": {
+          "method": "GET",
+          "url": { "raw": "http://localhost:8083/health", "protocol": "http", "host": ["localhost"], "port": "8083", "path": ["health"] }
+        }
+      }
+    ]
+  }
