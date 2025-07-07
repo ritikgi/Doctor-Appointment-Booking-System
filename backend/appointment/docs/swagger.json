@@ -1,0 +1,105 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/appointments": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Patient books an appointment for a slot with a doctor",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "appointments"
+                ],
+                "summary": "Book a new appointment",
+                "parameters": [
+                    {
+                        "description": "Appointment info",
+                        "name": "appointment",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.AppointmentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/model.Appointment"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "handler.AppointmentRequest": {
+            "type": "object",
+            "properties": {
+                "doctor_id": {
+                    "type": "integer"
+                },
+                "slot_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.Appointment": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "doctor_id": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "patient_id": {
+                    "type": "integer"
+                },
+                "slot_id": {
+                    "type": "integer"
+                },
+                "status": {
+                    "description": "Upcoming, Completed, Cancelled",
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
