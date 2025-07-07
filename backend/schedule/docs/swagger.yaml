@@ -1,0 +1,55 @@
+definitions:
+  handler.SlotRequest:
+    properties:
+      end_time:
+        type: string
+      start_time:
+        type: string
+    type: object
+  model.Slot:
+    properties:
+      doctor_id:
+        type: integer
+      end_time:
+        type: string
+      id:
+        type: integer
+      is_booked:
+        type: boolean
+      start_time:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /slots:
+    post:
+      consumes:
+      - application/json
+      description: Doctor creates a new slot
+      parameters:
+      - description: Slot info
+        in: body
+        name: slot
+        required: true
+        schema:
+          $ref: '#/definitions/handler.SlotRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/model.Slot'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Create a new slot
+      tags:
+      - slots
+swagger: "2.0"
